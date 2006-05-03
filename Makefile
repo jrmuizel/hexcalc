@@ -1,15 +1,15 @@
 LIBS = -lreadline
 
-hexcalc: main.c y.tab.c lex.yy.c
-	gcc -Wall -o hexcalc $(LIBS) main.c y.tab.c lex.yy.c
+hexcalc: main.c hexcalc.tab.c lex.yy.c
+	gcc -Wall -o hexcalc $(LIBS) main.c hexcalc.tab.c lex.yy.c
 
-y.tab.c: hexcalc.y
-	bison.yacc -d hexcalc.y
+hexcalc.tab.c: hexcalc.y
+	bison -d hexcalc.y
 
-y.tab.h: y.tab.c
+hexcalc.tab.h: hexcalc.tab.c
 
-lex.yy.c: hexcalc.lex y.tab.h
-	lex hexcalc.lex
+lex.yy.c: hexcalc.lex hexcalc.tab.h
+	flex hexcalc.lex
 
 clean:
 	-rm -f hexcalc *.o y.tab.h y.tab.c lex.yy.c

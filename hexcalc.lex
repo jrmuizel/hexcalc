@@ -4,7 +4,7 @@
 typedef long long YYSTYPE;
 	extern char default_output_fmt;
 	#define YYSTYPE_IS_DECLARED
-	#include "y.tab.h"
+	#include "hexcalc.tab.h"
 %}
 
 %%

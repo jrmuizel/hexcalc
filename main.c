@@ -1,7 +1,7 @@
-#include <readline/readline.h>
-#include <readline/history.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 char default_output_fmt;
 int yyparse(void);
