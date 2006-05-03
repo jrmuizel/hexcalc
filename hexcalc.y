@@ -117,10 +117,12 @@ void bin_print(long long x){
 	}
 
 	for(i=k; i>=0; i--){
-		if(x & (1ULL << i))
-			printf("1");
+		if (x & (1ULL << i))
+			putchar('1');
 		else
-			printf("0");
+			putchar('0');
+		if ((i % 4) == 0 && i != 0)
+			putchar(' ');
 	}
 	printf("\n");
 }
