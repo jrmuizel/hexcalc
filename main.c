@@ -27,4 +27,5 @@ int main(int argc, char *argv[]){
 		yy_scan_string(line_read);
 		yyparse();
 	}
+	return 0;
 }
