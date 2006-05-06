@@ -1,7 +1,8 @@
 LIBS = -lreadline
+CFLAGS = -ggdb3
 
 hexcalc: main.c hexcalc.tab.c lex.yy.c
-	gcc -Wall -o hexcalc $(LIBS) main.c hexcalc.tab.c lex.yy.c
+	gcc $(CFLAGS) -o hexcalc $(LIBS) main.c hexcalc.tab.c lex.yy.c
 
 hexcalc.tab.c: hexcalc.y
 	bison -d hexcalc.y
