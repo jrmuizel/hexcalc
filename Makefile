@@ -1,5 +1,5 @@
 LIBS = -lreadline
-CFLAGS = -ggdb3
+CFLAGS = -ggdb3 -Wall
 
 hexcalc: main.c hexcalc.tab.c lex.yy.c
 	gcc $(CFLAGS) -o hexcalc $(LIBS) main.c hexcalc.tab.c lex.yy.c
