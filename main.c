@@ -19,8 +19,10 @@ int main(int argc, char *argv[]){
 		}
 
 		line_read = readline("");
-
-		if (line_read && *line_read)
+		if (!line_read)
+			break;
+		
+		if (*line_read)
 			add_history(line_read);
 		yy_scan_string(line_read);
 		yyparse();
