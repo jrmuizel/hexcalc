@@ -44,23 +44,26 @@ statement:
 iexpr: 
 	expr { $$ = $1; }
 	;
+eexpr:  expr { $$ = $1; }
+	| { $$ = ans; }
+	;
 
 expr:
 	INTEGER
-	| expr '%' expr		{ $$ = $1 % $3;}
-	| expr '+' expr		{ $$ = $1 + $3; }
-	| expr '-' expr		{ $$ = $1 - $3; }
-	| expr '*' expr		{ $$ = $1 * $3; }
-	| expr '/' expr		{ $$ = $1 / $3; }
-	| expr '&' expr		{ $$ = $1 & $3; }
-	| expr '|' expr		{ $$ = $1 | $3; }
-	| expr '^' expr		{ $$ = $1 ^ $3; }
-	| '~' expr		{ $$ = ~$2; }
-	| '!' expr		{ $$ = !$2; }
-	| expr SHR expr		{ $$ = $1 << $3; }
-	| expr SHL expr		{ $$ = $1 >> $3; }
-	| '(' expr ')'		{ $$ = $2; }
-	| expr '\'' expr	{ $$ = llabs($1 - $3); }
+	| eexpr '%' expr		{ $$ = $1 % $3;}
+	| eexpr '+' expr		{ $$ = $1 + $3; }
+	| eexpr '-' expr		{ $$ = $1 - $3; }
+	| eexpr '*' expr		{ $$ = $1 * $3; }
+	| eexpr '/' expr		{ $$ = $1 / $3; }
+	| eexpr '&' expr		{ $$ = $1 & $3; }
+	| eexpr '|' expr		{ $$ = $1 | $3; }
+	| eexpr '^' expr		{ $$ = $1 ^ $3; }
+	| '~' eexpr			{ $$ = ~$2; }
+	| '!' eexpr			{ $$ = !$2; }
+	| eexpr SHR expr		{ $$ = $1 << $3; }
+	| eexpr SHL expr		{ $$ = $1 >> $3; }
+	| '(' expr ')'			{ $$ = $2; }
+	| expr '\'' expr		{ $$ = llabs($1 - $3); }
 	;
 %%
 
