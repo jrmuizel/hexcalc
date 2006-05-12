@@ -27,13 +27,13 @@
 %%
 
 program:
-	program statement
+	statement
 	|
 	;
 
 statement:
-	iexpr		{ print_value(default_output_fmt, $1); ans = $1;}
-	| FORMAT iexpr	{ 
+	expr		{ print_value(default_output_fmt, $1); ans = $1;}
+	| FORMAT expr	{ 
 				print_value($1, $2);
 				ans = $2;
 			}
@@ -41,9 +41,6 @@ statement:
 	| FORMAT	{	print_value($1, ans);	}
 ;
 
-iexpr: 
-	expr { $$ = $1; }
-	;
 eexpr:  expr { $$ = $1; }
 	| { $$ = ans; }
 	;
