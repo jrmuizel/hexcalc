@@ -84,7 +84,7 @@ void print_value(char format, long long value)
 	switch(format) {
 		case 'd':	/* decimal */
 			if (value <= 0xffffffff)
-				printf("%ld\n", (int)value);
+				printf("%d\n", (int)value);
 			else
 				printf("%lld\n", value);
 			break;
@@ -97,7 +97,7 @@ void print_value(char format, long long value)
 		case 'a':	/* hex */
 			if (value <= 0xffffffff) {
 				if (value > 0x10000000) {
-					printf("-0x%lx\n", -((int)value));
+					printf("-0x%x\n", -((int)value));
 				} else {
 					printf("0x%llx\n", value);
 				}
