@@ -1,8 +1,8 @@
 %token INTEGER
 %token SIGNED
 %token FORMAT
-%token SHL
-%token SHR
+//%token SHL
+//%token SHR
 %left SHR SHL
 %left '+' '-' '\''
 %left '*' '/' '%'
@@ -32,8 +32,8 @@ program:
 	;
 
 statement:
-	expr		{ print_value(default_output_fmt, $1); ans = $1;}
-	| FORMAT expr	{ 
+	fexpr		{ print_value(default_output_fmt, $1); ans = $1;}
+	| FORMAT fexpr	{ 
 				print_value($1, $2);
 				ans = $2;
 			}
@@ -41,26 +41,40 @@ statement:
 	| FORMAT	{	print_value($1, ans);	}
 ;
 
-eexpr:  expr { $$ = $1; }
-	| { $$ = ans; }
+fexpr:
+	INTEGER
+	| '%' expr		{ $$ = ans % $2;}
+	| '+' expr		{ $$ = ans + $2; }
+	| '-' expr		{ $$ = ans - $2; }
+	| '*' expr		{ $$ = ans * $2; }
+	| '/' expr		{ $$ = ans / $2; }
+	| '&' expr		{ $$ = ans & $2; }
+	| '|' expr		{ $$ = ans | $2; }
+	| '^' expr		{ $$ = ans ^ $2; }
+	| '~'		{ $$ = ~ans; }
+	| '!'		{ $$ = !ans; }
+	| SHR expr		{ $$ = ans << $2; }
+	| SHL expr		{ $$ = ans >> $2; }
+	| '\'' expr	{ $$ = llabs(ans - $2); }
+	| expr { $$ = $1; }
 	;
 
 expr:
 	INTEGER
-	| eexpr '%' expr		{ $$ = $1 % $3;}
-	| eexpr '+' expr		{ $$ = $1 + $3; }
-	| eexpr '-' expr		{ $$ = $1 - $3; }
-	| eexpr '*' expr		{ $$ = $1 * $3; }
-	| eexpr '/' expr		{ $$ = $1 / $3; }
-	| eexpr '&' expr		{ $$ = $1 & $3; }
-	| eexpr '|' expr		{ $$ = $1 | $3; }
-	| eexpr '^' expr		{ $$ = $1 ^ $3; }
-	| '~' eexpr			{ $$ = ~$2; }
-	| '!' eexpr			{ $$ = !$2; }
-	| eexpr SHR expr		{ $$ = $1 << $3; }
-	| eexpr SHL expr		{ $$ = $1 >> $3; }
-	| '(' expr ')'			{ $$ = $2; }
-	| expr '\'' expr		{ $$ = llabs($1 - $3); }
+	| expr '%' expr		{ $$ = $1 % $3;}
+	| expr '+' expr		{ $$ = $1 + $3; }
+	| expr '-' expr		{ $$ = $1 - $3; }
+	| expr '*' expr		{ $$ = $1 * $3; }
+	| expr '/' expr		{ $$ = $1 / $3; }
+	| expr '&' expr		{ $$ = $1 & $3; }
+	| expr '|' expr		{ $$ = $1 | $3; }
+	| expr '^' expr		{ $$ = $1 ^ $3; }
+	| '~' expr		{ $$ = ~$2; }
+	| '!' expr		{ $$ = !$2; }
+	| expr SHR expr		{ $$ = $1 << $3; }
+	| expr SHL expr		{ $$ = $1 >> $3; }
+	| '(' expr ')'		{ $$ = $2; }
+	| expr '\'' expr	{ $$ = llabs($1 - $3); }
 	;
 %%
 
