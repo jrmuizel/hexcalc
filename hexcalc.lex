@@ -1,10 +1,11 @@
 %{
-	#define _XOPEN_SOURCE
 	#include <time.h>
-typedef long long YYSTYPE;
+	#include <stdlib.h>
+	typedef long long YYSTYPE;
 	extern char default_output_fmt;
 	#define YYSTYPE_IS_DECLARED
 	#define YY_NO_UNPUT
+	#include "hexcalc.h"
 	#include "hexcalc.tab.h"
 %}
 
@@ -86,6 +87,11 @@ typedef long long YYSTYPE;
 .	yyerror("invalid character");
 
 %%
+
+void scan_string(char *s)
+{
+	yy_scan_string(s);
+}
 
 int yywrap(void){
 	return 1;

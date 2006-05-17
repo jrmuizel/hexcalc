@@ -1,5 +1,5 @@
 LIBS = -lreadline
-CFLAGS = -ggdb3 -Wall
+CFLAGS = -ggdb3 -Wall -D_XOPEN_SOURCE -std=gnu99
 
 hexcalc: main.c hexcalc.tab.c lex.yy.c
 	gcc $(CFLAGS) -o hexcalc $(LIBS) main.c hexcalc.tab.c lex.yy.c
