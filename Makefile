@@ -13,4 +13,4 @@ lex.yy.c: hexcalc.lex hexcalc.tab.h
 	flex hexcalc.lex
 
 clean:
-	-rm -f hexcalc *.o y.tab.h y.tab.c lex.yy.c
+	-rm -f hexcalc *.o hexcalc.tab.h hexcalc.tab.c lex.yy.c
