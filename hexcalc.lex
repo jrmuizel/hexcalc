@@ -1,7 +1,6 @@
 %{
 	#define _XOPEN_SOURCE
 	#include <time.h>
-	#include <string.h>
 typedef long long YYSTYPE;
 	extern char default_output_fmt;
 	#define YYSTYPE_IS_DECLARED
@@ -28,7 +27,6 @@ typedef long long YYSTYPE;
 	*/
 
 0x[0-9a-fA-F_]+ {
-		int l = strlen(yytext);
 		char *p = yytext;
 		int i;
 		/* allow _ in numbers to seperate digit chunks */
