@@ -43,6 +43,12 @@
 		return INTEGER;
 	}
 
+0b[01]+ {
+		/* yytext + 2 skips '0b' prefix */
+		yylval = strtoll(yytext + 2, NULL, 2);
+		return INTEGER;
+	}
+
 [0-9]+:[0-9]+ {
 		struct tm tm;
 		strptime(yytext, "%H:%M", &tm);
