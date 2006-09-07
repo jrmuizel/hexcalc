@@ -10,7 +10,7 @@ hexcalc.tab.c: hexcalc.y
 hexcalc.tab.h: hexcalc.tab.c
 
 lex.yy.c: hexcalc.lex hexcalc.tab.h
-	flex hexcalc.lex
+	flex --header-file=lex.yy.h $^
 
 clean:
 	-rm -f hexcalc *.o hexcalc.tab.h hexcalc.tab.c lex.yy.c

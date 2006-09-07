@@ -16,16 +16,14 @@
 	#include <stdlib.h>
 	#include <stdio.h>
 	#include "hexcalc.h"
+	#include "lex.yy.h"
 	typedef long long YYSTYPE;
 	#define YYSTYPE_IS_DECLARED
 	extern char default_output_fmt;
 	long long ans;
 	void bin_print(long long);
 	void print_value(char format, long long value);
-	int yyerror(char *s) {
-		printf("%s\n", s);
-	return 0;
-}
+
 %}
 %%
 
@@ -153,6 +151,11 @@ void bin_print(long long x){
 
 char default_output_fmt;
 int yyparse(void);
+
+int yyerror(char *s) {
+	printf("%s\n", s);
+	return 0;
+}
 
 int main(int argc, char *argv[]){
 	static char*line_read = (char *)NULL;
