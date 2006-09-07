@@ -4,10 +4,12 @@
 	typedef long long YYSTYPE;
 	extern char default_output_fmt;
 	#define YYSTYPE_IS_DECLARED
-	#define YY_NO_UNPUT
 	#include "hexcalc.h"
 	#include "hexcalc.tab.h"
 %}
+
+/* avoid emiting yyunput */
+%option nounput
 
 %%
 	/* integers */
