@@ -152,27 +152,31 @@ void bin_print(long long x){
 char default_output_fmt;
 int yyparse(void);
 
-int yyerror(char *s) {
+int yyerror(char *s)
+{
 	printf("%s\n", s);
 	return 0;
 }
 
-int main(int argc, char *argv[]){
-	static char*line_read = (char *)NULL;
+int main(int argc, char *argv[])
+{
+	char *line_read = NULL;
+
 	if (argc > 1)
 		default_output_fmt = argv[1][0];
-	else 
+	else
 		default_output_fmt = 'x';
-	while(1){
+
+	while (1) {
 		if (line_read) {
 			free(line_read);
-			line_read = (char *)NULL;
+			line_read = NULL;
 		}
 
 		line_read = readline("");
 		if (!line_read)
 			break;
-		
+
 		if (*line_read)
 			add_history(line_read);
 		scan_string(line_read);
