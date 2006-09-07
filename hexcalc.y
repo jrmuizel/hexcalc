@@ -45,8 +45,7 @@ statement:
 ;
 
 fexpr:
-	INTEGER
-	| '%' expr		{ $$ = ans % $2;}
+	'%' expr		{ $$ = ans % $2;}
 	| '+' expr		{ $$ = ans + $2; }
 	| '-' expr		{ $$ = ans - $2; }
 	| '*' expr		{ $$ = ans * $2; }
