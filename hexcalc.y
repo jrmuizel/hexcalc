@@ -63,7 +63,8 @@ fexpr:
 
 expr:
 	INTEGER
-	| expr '%' expr		{ $$ = $1 % $3;}
+	| '%'			{ $$ = ans; } // '%' represents the last value
+	| expr '%' expr		{ $$ = $1 % $3; }
 	| expr '+' expr		{ $$ = $1 + $3; }
 	| expr '-' expr		{ $$ = $1 - $3; }
 	| expr '*' expr		{ $$ = $1 * $3; }
