@@ -130,6 +130,7 @@ void bin_print(long long x){
 			k = j;
 		}
 	}
+	k = ((k + (4-1)) & -4) - 1;
 
 	for(i=k; i>=0; i--){
 		if (x & (1ULL << i))
