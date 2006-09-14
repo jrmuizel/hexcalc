@@ -117,28 +117,30 @@ void print_value(char format, long long value)
 			break;
 	}
 }
+
 void bin_print(long long x){
-	int i;
-	int j;
-	int  k;
+	/* we want to print at least the bottom bit */
+	int bit_count = 1;
 	int int_size;
 	int_size = sizeof(long long) * 8;
-	/* determine the highest bit */
 
-	for(j=0; j<int_size; j++){
-		if (x & (1ULL << j)) {
-			k = j;
+	/* determine the highest bit */
+	for (int i=0; i<int_size; i++) {
+		if (x & (1ULL << i)) {
+			bit_count = i+1;
 		}
 	}
-	k = ((k + (4-1)) & -4) - 1;
+	/* round up to the nearest multiple of 4 */
+	bit_count = ((bit_count + (4-1)) & -4);
 
-	for(i=k; i>=0; i--){
-		if (x & (1ULL << i))
+	for(int i=0; i<bit_count; i++){
+		if (x & (1ULL << (bit_count-1)))
 			putchar('1');
 		else
 			putchar('0');
-		if ((i % 4) == 0 && i != 0)
+		if ((i % 4) == 3)
 			putchar(' ');
+		x <<= 1;
 	}
 	printf("\n");
 }
