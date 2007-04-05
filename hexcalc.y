@@ -1,12 +1,12 @@
 %token INTEGER
 %token SIGNED
 %token FORMAT
-%left '+' '-' '\''
-%left '*' '/' '%'
 %left '|'
 %left '^'
 %left '&'
 %left SHR SHL
+%left '+' '-' '\''
+%left '*' '/' '%'
 %left '~' '!'
 %left 'd' 'b' 'h' 'o'
 
