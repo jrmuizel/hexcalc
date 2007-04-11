@@ -35,7 +35,7 @@
 		int i;
 		/* allow _ in numbers to seperate digit chunks */
 		for (i=0; *p; i++, p++) {
-			if (yytext[i] == '_') {
+			if (*p == '_') {
 				p++;
 			}
 			yytext[i] = *p;
